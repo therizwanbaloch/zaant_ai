@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   MessageSquare, History, Zap, ShieldCheck, Globe, Mountain, 
   ArrowRight, Quote, Languages, Map, Heart, Star, Sparkles,
@@ -34,14 +35,14 @@ const Landing = () => {
         scrolled || isMenuOpen ? 'bg-white shadow-lg' : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto flex justify-between items-center relative z-[110]">
-          <div className="flex items-center gap-2 group cursor-pointer">
+          <Link to="/" className="flex items-center gap-2 group cursor-pointer">
             <div className="bg-[#B2386C] p-2 rounded-lg group-hover:rotate-12 transition-transform">
               <Mountain className="text-white w-5 h-5 md:w-6 md:h-6" />
             </div>
             <h1 className="text-xl md:text-2xl font-black tracking-tighter text-[#B2386C]">
               ZAANT<span className="text-[#F26B6B]">.</span>
             </h1>
-          </div>
+          </Link>
           
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
@@ -49,9 +50,11 @@ const Landing = () => {
                 {link.name}
               </a>
             ))}
-            <button className="bg-[#B2386C] text-white px-7 py-2.5 rounded-full font-bold shadow-[4px_4px_0px_#F26B6B] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
-              Launch Chat
-            </button>
+            <Link to="/login">
+              <button className="bg-[#B2386C] text-white px-7 py-2.5 rounded-full font-bold shadow-[4px_4px_0px_#F26B6B] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all">
+                Launch Chat
+              </button>
+            </Link>
           </div>
 
           <button className="md:hidden p-2 text-[#B2386C]" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -59,6 +62,7 @@ const Landing = () => {
           </button>
         </div>
 
+        {/* Mobile Menu */}
         <div className={`absolute top-0 left-0 w-full bg-white transition-all duration-500 origin-top z-[100] md:hidden ${
           isMenuOpen ? 'opacity-100 translate-y-0 visible h-screen' : 'opacity-0 -translate-y-full invisible h-0'
         }`}>
@@ -68,7 +72,11 @@ const Landing = () => {
                 {link.name}
               </a>
             ))}
-            <button className="w-full bg-[#B2386C] text-white py-5 rounded-2xl font-black text-xl shadow-[6px_6px_0px_#F26B6B]">Launch Chat</button>
+            <Link to="/login" className="w-full" onClick={() => setIsMenuOpen(false)}>
+              <button className="w-full bg-[#B2386C] text-white py-5 rounded-2xl font-black text-xl shadow-[6px_6px_0px_#F26B6B]">
+                Launch Chat
+              </button>
+            </Link>
           </div>
         </div>
       </nav>
@@ -87,9 +95,11 @@ const Landing = () => {
             <p className="text-base md:text-xl text-gray-700 mb-10 max-w-lg font-medium italic">
               "History isn't just written in books; it's spoken in the Sulemani wind." Zaant brings that wind to your screen.
             </p>
-            <button className="bg-[#F26B6B] text-white px-8 py-5 rounded-2xl text-lg font-black flex items-center justify-center gap-2 hover:bg-[#B2386C] transition-all transform hover:scale-105 shadow-xl w-full sm:w-auto">
-              Start Conversing <ArrowRight />
-            </button>
+            <Link to="/login" className="w-full sm:w-auto">
+              <button className="bg-[#F26B6B] text-white px-8 py-5 rounded-2xl text-lg font-black flex items-center justify-center gap-2 hover:bg-[#B2386C] transition-all transform hover:scale-105 shadow-xl w-full">
+                Start Conversing <ArrowRight />
+              </button>
+            </Link>
           </div>
 
           <div className="relative hidden md:block">
@@ -106,10 +116,10 @@ const Landing = () => {
                </div>
                <div className="space-y-4 font-bold text-sm">
                   <div className="bg-[#F7C6C7]/30 p-4 rounded-2xl rounded-tl-none text-[#B2386C]">
-                    Wajha! Sulemani deegar galwarant mane baaz farq ant.
+                    !!واجہ! بیا سلیمانی بلوچی ءَ بٹاں جنوں۔۔
                   </div>
                   <div className="bg-[#B2386C] p-4 rounded-2xl rounded-tr-none text-white ml-8 shadow-md">
-                    Explain the bravery of the Koh-e-Sulaiman tribes.
+                    Built on the ‘Mayar’ of the Sulaiman range.
                   </div>
                </div>
             </div>
@@ -117,7 +127,7 @@ const Landing = () => {
         </div>
       </header>
 
-      {/* NEW SECTION 1: The Oral Archive (Horizontal Showcase) */}
+      {/* Oral Archive */}
       <section id="archive" className="py-20 bg-white/50 border-y-2 border-white/20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -147,17 +157,17 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* 3. Proverbs Section */}
+      {/* Proverbs Section */}
       <section id="proverbs" className="py-20 md:py-32 bg-[#B2386C] relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-white/10 p-6 rounded-3xl border border-white/20 backdrop-blur-md">
                     <Quote className="text-[#FFD95A] mb-4" />
-                    <p className="text-white font-bold text-sm italic">"The mountain does not bow to the storm."</p>
+                    <p className="text-white font-bold text-sm italic">ہشتر ءِ دُزی پہ کِین کنزکائی نہ بیت</p>
                 </div>
                 <div className="bg-white/10 p-6 rounded-3xl border border-white/20 backdrop-blur-md sm:mt-8">
                     <Quote className="text-[#F26B6B] mb-4" />
-                    <p className="text-white font-bold text-sm italic">"A word spoken is an arrow shot."</p>
+                    <p className="text-white font-bold text-sm italic">ٹک مئی وساء نئیں ساہ مئی وساء ایں ٹک چھکا دیانی</p>
                 </div>
             </div>
             <div className="order-1 md:order-2 text-center md:text-left">
@@ -169,7 +179,7 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* NEW SECTION 2: The Lineage Engine */}
+      {/* Lineage Engine */}
       <section className="py-24 px-6 overflow-hidden relative">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
           <div className="flex-1 space-y-8">
@@ -200,7 +210,7 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* 4. Ecosystem */}
+      {/* Ecosystem */}
       <section id="ecosystem" className="py-20 px-6 bg-white/40">
         <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -227,7 +237,7 @@ const Landing = () => {
                     <h4 className="text-xl font-black text-[#B2386C]">Community Led</h4>
                     <p className="text-gray-400 font-bold text-sm">Built with Sulemani elders.</p>
                 </div>
-                <div className="md:col-span-2 bg-[#F26B6B] rounded-[2.5rem] p-8 flex flex-col md:flex-row items-start md:items-center justify-between text-white group hover:shadow-2xl transition gap-6">
+                <Link to="/login" className="md:col-span-2 bg-[#F26B6B] rounded-[2.5rem] p-8 flex flex-col md:flex-row items-start md:items-center justify-between text-white group hover:shadow-2xl transition gap-6">
                     <div>
                         <h4 className="text-2xl md:text-3xl font-black mb-2">Preserving the Unwritten</h4>
                         <p className="font-bold opacity-80 max-w-md text-sm md:text-base">Digitizing 1,000+ years of oral Sulemani history.</p>
@@ -235,12 +245,12 @@ const Landing = () => {
                     <div className="bg-white/20 p-4 rounded-full group-hover:bg-white group-hover:text-[#F26B6B] transition">
                         <ArrowRight size={28} />
                     </div>
-                </div>
+                </Link>
             </div>
         </div>
       </section>
 
-      {/* 5. Features */}
+      {/* Features */}
       <section id="features" className="py-20 bg-white/30 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <FeatureCard 
@@ -264,7 +274,7 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* 6. Footer */}
+      {/* Footer */}
       <footer className="bg-white pt-20 pb-12 px-8 border-t-8 border-[#B2386C]">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 text-center md:text-left">
           <div className="md:col-span-2">
